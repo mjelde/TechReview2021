@@ -9,8 +9,8 @@ class TechType(models.Model):
     def __str__(self):
         return self.typename
 
-    class Meta:
-        db_table='techtype'
+class Meta:
+    db_table='techtype'
 
 class Product(models.Model):
     productname=models.CharField(max_length=255)
@@ -21,11 +21,21 @@ class Product(models.Model):
     producturl=models.URLField()
     description=models.TextField()
 
+    def discountAmount(self):
+        self.discount=self.price * .05
+        return self.discount
+
+#need to figure out why this is not working
+#something to do with the function itself
+    def discountPrice(self):
+        disc=self.discountAmount()
+        self.discountedPrice=self.price-self.disc 
+
     def __str__(self):
         return self.productname
 
-    class Meta:
-        db_table='product'
+class Meta:
+    db_table='product'
 
 class Review(models.Model):
     title=models.CharField(max_length=255)
@@ -37,5 +47,5 @@ class Review(models.Model):
     def __str__(self):
         return self.title
 
-    class Meta:
-        db_table='review'
+class Meta:
+    db_table='review'
