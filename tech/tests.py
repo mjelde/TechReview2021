@@ -62,3 +62,5 @@ class New_Product_Authentication_Test(TestCase):
     def test_redirect_if_not_logged_in(self):
         response=self.client.get(reverse('newproduct'))
         self.assertRedirects(response, '/accounts/login/?next=/tech/newproduct/')
+
+        
